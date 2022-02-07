@@ -18,7 +18,7 @@ const BookCard = ({ book, isFeatured }) => {
         </div>
         <div className="p-4">
           {isFeatured && (
-            <span class="inline-block rounded-full bg-orange-200 px-2 py-1 text-xs font-semibold uppercase leading-none tracking-wide text-orange-800">
+            <span className="inline-block rounded-full bg-orange-200 px-2 py-1 text-xs font-semibold uppercase leading-none tracking-wide text-orange-800">
               Featured
             </span>
           )}

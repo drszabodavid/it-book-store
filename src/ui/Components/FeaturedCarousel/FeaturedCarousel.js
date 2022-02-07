@@ -3,14 +3,11 @@ import { BookCard, Carousel, FeaturedText } from "..";
 
 const FeaturedCarousel = ({ books }) => {
   return (
-    <>
-      <FeaturedText />
-      <Carousel>
-        {books.map((book, index) => (
-          <BookCard book={book} isFeatured />
-        ))}
-      </Carousel>
-    </>
+    <Carousel>
+      {books.map((book) => (
+        <BookCard key={book.isbn13} book={book} isFeatured />
+      ))}
+    </Carousel>
   );
 };
 
