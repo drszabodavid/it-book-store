@@ -1,39 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SearchField } from "..";
 import useFetch from "../../../api/useFetch";
+import PropTypes from "prop-types";
+import { displayError } from "../../../utils/notifications";
+import { searchUrl, minSearchCharacters } from "../../../constants/api";
 
-const SearchComponent = ({ initialBookData, setBookData }) => {
-  // TODO -> add proptypes
-
-  const [searchValue, setSearchValue] = useState("");
-  const BASE_URL = "https://api.itbook.store/1.0/search/";
+const SearchComponent = ({ setBookData }) => {
   const [url, setUrl] = useState("");
+  const [searchValue, setSearchValue] = useState("");
   const { data: searchData, isLoading, error } = useFetch(url);
+
+  useEffect(() => {
+    if (!isLoading && !error && searchData) {
+      console.log(searchData);
+      const { books } = { ...searchData };
+      if (!isLoading && !error && books) setBookData(books);
+    }
+  }, [isLoading, error, searchData]);
 
   const validateSearch = (searchValue) => {
     return !!searchValue && searchValue.length >= 3;
   };
 
-  const handleSubmit = (e) => {
+  const handleSearch = (e) => {
     e.preventDefault();
-    if (validateSearch(searchValue)) setUrl(`${BASE_URL} + ${searchValue}`);
-  };
-
-  const handleValueChange = (e) => {
-    const { value } = e.target;
-    setSearchValue(value);
-
     if (validateSearch(searchValue)) {
-      setUrl(`${BASE_URL} + ${searchValue}`);
-      handleSearch();
-    } else if (searchValue.length <= 1) {
-      setBookData(initialBookData);
+      setUrl(`${searchUrl} + ${searchValue}`);
+    } else {
+      displayError(
+        `You need to type in minimum ${minSearchCharacters} characters`
+      );
     }
-  };
-
-  const handleSearch = () => {
-    const { books } = { ...searchData };
-    if (!isLoading && !error && books) setBookData(books);
   };
 
   return (
@@ -41,11 +38,16 @@ const SearchComponent = ({ initialBookData, setBookData }) => {
       <SearchField
         value={searchValue}
         placeholder="Enter a books name"
-        handleSubmit={handleSubmit}
-        handleValueChange={handleValueChange}
+        handleSubmit={handleSearch}
+        handleValueChange={setSearchValue}
+        handleSearchClick={handleSearch}
       />
     </div>
   );
 };
 
 export default SearchComponent;
+
+SearchComponent.propTypes = {
+  setBookData: PropTypes.func.isRequired,
+};
