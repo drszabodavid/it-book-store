@@ -18,8 +18,10 @@ const UserHeader = () => {
       </div>
 
       <div className="flex w-full flex-row justify-center">
-        <h1 className={`font-link text-8xl font-medium ${gradientColorStyle}`}>
-          Coodbooks
+        <h1
+          className={`font-link text-8xl font-medium ${gradientColorStyle} pointer-events-none`}
+        >
+          Codebooks
         </h1>
       </div>
 
