@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { SearchIcon } from "../Icons";
 
 const SearchField = ({
@@ -6,6 +7,7 @@ const SearchField = ({
   placeholder,
   handleSubmit,
   handleValueChange,
+  handleSearchClick,
 }) => {
   return (
     <form
@@ -13,7 +15,7 @@ const SearchField = ({
       className="relative my-4 flex w-1/2 items-center self-center rounded-xl border border-transparent hover:border hover:border-gray-500"
     >
       <input
-        onChange={handleValueChange}
+        onChange={(e) => handleValueChange(e.target.value)}
         type="text"
         value={value}
         placeholder={placeholder}
@@ -21,7 +23,10 @@ const SearchField = ({
         maxLength="50"
       />
 
-      <div className="absolute right-0 mr-0 flex h-12 w-16 items-center justify-center rounded-r-xl bg-gray-300 ">
+      <div
+        onClick={handleSearchClick}
+        className="absolute right-0 mr-0 flex h-12 w-16 items-center justify-center rounded-r-xl bg-gray-300"
+      >
         <SearchIcon
           size="h-8 w-8"
           extraStyle="cursor-pointer transition duration-300 ease-in-out hover:scale-125"
@@ -32,3 +37,11 @@ const SearchField = ({
 };
 
 export default SearchField;
+
+SearchField.propTypes = {
+  value: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  handleValueChange: PropTypes.func.isRequired,
+  handleSearchClick: PropTypes.func.isRequired,
+};
