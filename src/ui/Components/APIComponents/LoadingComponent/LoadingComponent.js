@@ -1,9 +1,14 @@
 import React from "react";
+import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
 
 const LoadingComponent = () => {
   return (
-    <div className="flex w-full mt-4 flex-col text-center text-blue-800 font-bolt">
-      I'm loading, please wait...
+    <div className="mt-4 flex w-full flex-col items-center">
+      <LoadingSpinner />
+
+      <div className="font-bolt text-sandyBrown mt-4 flex w-full flex-col text-center">
+        I'm loading, please wait...
+      </div>
     </div>
   );
 };

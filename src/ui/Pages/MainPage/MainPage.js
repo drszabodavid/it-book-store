@@ -3,6 +3,7 @@ import useFetch from "../../../api/useFetch";
 import { ErrorHandlingComponent } from "../../Components/APIComponents";
 import {
   FeaturedCarousel,
+  FeaturedText,
   SearchComponent,
   UserHeader,
 } from "../../Components";
@@ -25,14 +26,20 @@ const MainPage = () => {
   return (
     <div className="bg-leanderWeb flex h-screen w-full flex-col overflow-hidden">
       <UserHeader />
-
-      <ErrorHandlingComponent isLoading={isLoading} error={error} />
-      {!isLoading && <FeaturedCarousel books={bookData} />}
-
       <SearchComponent
         initialBookData={initialBookData}
         setBookData={setBookData}
       />
+      <FeaturedText />
+
+      <div className="flex h-min flex-col items-center">
+        <ErrorHandlingComponent isLoading={isLoading} error={error} />
+        {!isLoading && (
+          <>
+            <FeaturedCarousel books={bookData} />
+          </>
+        )}
+      </div>
     </div>
   );
 };
