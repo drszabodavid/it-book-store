@@ -1,6 +1,6 @@
 import React from "react";
 
-const FeaturedText = ({ isSearch }) => {
+const DividerText = ({ isSearch }) => {
   return (
     <div className="flex flex-row">
       <div className="relative w-2/4">
@@ -18,4 +18,4 @@ const FeaturedText = ({ isSearch }) => {
   );
 };
 
-export default FeaturedText;
+export default DividerText;

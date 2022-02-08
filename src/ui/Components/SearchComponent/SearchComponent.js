@@ -7,11 +7,11 @@ import { categories } from "../../../constants/categories";
 import { useNavigate } from "react-router-dom";
 
 const SearchComponent = ({ currentQuickSearchValue = "" }) => {
+  const navigate = useNavigate();
   const [url, setUrl] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [quickSearch, setQuickSearch] = useState("");
   const { data, isLoading, error } = useFetch(url);
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (!isLoading && !error && data) {

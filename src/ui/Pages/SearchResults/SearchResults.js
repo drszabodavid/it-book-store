@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { BookCard, FeaturedText, SearchComponent } from "../../Components";
+import { BookCard, DividerText, SearchComponent } from "../../Components";
 import { ErrorHandlingComponent } from "../../Components/APIComponents";
 
 const SearchResults = () => {
@@ -19,12 +19,12 @@ const SearchResults = () => {
   }, [location]);
 
   return (
-    <div className="bg-leanderWeb flex h-full w-full flex-col">
+    <div className="flex flex-col w-full h-full bg-leanderWeb">
       <SearchComponent currentQuickSearchValue={quickSearch} />
-      <FeaturedText isSearch />
+      <DividerText isSearch />
       <ErrorHandlingComponent isLoading={isLoading} />
 
-      <div className="flex w-3/4 flex-wrap justify-center self-center">
+      <div className="flex flex-wrap self-center justify-center w-3/4">
         {searchData.map((book) => {
           return <BookCard book={book} />;
         })}
