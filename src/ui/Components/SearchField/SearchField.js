@@ -12,14 +12,14 @@ const SearchField = ({
   return (
     <form
       onSubmit={handleSubmit}
-      className="relative my-4 flex w-1/2 items-center self-center rounded-xl border border-transparent hover:border hover:border-gray-500"
+      className="relative mt-6 mb-2 flex w-1/2 items-center self-center rounded-xl"
     >
       <input
-        onChange={(e) => handleValueChange(e.target.value)}
+        onChange={handleValueChange}
         type="text"
         value={value}
         placeholder={placeholder}
-        className="h-12 w-full rounded-xl bg-gray-400 p-3 text-white placeholder-gray-300 placeholder-opacity-50 caret-white outline-none"
+        className="bg-sandyBrown/30 hover:bg-sandyBrown/50 focus:bg-sandyBrown/50 h-12 w-full rounded-xl p-3 placeholder-gray-500 placeholder-opacity-50 outline-none"
         maxLength="50"
       />
 

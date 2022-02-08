@@ -21,7 +21,7 @@ const Carousel = ({ children }) => {
   };
 
   return (
-    <div className="bg-shadow flex h-full w-3/4 self-center px-8">
+    <div className="bg-shadow flex h-full w-5/6 self-center px-8">
       <div className="relative flex w-full">
         <div className="flex h-full items-center">
           <button
@@ -52,5 +52,4 @@ const Carousel = ({ children }) => {
   );
 };
 
-Carousel.whyDidYouRender = true;
 export default Carousel;

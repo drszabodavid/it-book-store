@@ -1,5 +1,5 @@
 import React from "react";
-import { BookCard, Carousel, FeaturedText } from "..";
+import { BookCard, Carousel } from "..";
 
 const FeaturedCarousel = ({ books }) => {
   return (
