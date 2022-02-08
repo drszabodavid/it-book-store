@@ -2,7 +2,6 @@ import React from "react";
 import {
   sandyBrown,
   mediumCarmine,
-  gradientColorStyle,
 } from "../../../constants/colors";
 import { JavaIcon, JavascriptIcon, PythonIcon } from "../Icons";
 import { Link } from "react-router-dom";
@@ -23,7 +22,7 @@ const UserHeader = () => {
 
       <div className="flex w-full flex-row justify-start lg:justify-center">
         <h1
-          className={`font-link text-5xl font-medium lg:text-8xl ${gradientColorStyle} pointer-events-none`}
+          className={`font-link from-leanderWeb to-sandyBrown pointer-events-none bg-gradient-to-br bg-clip-text text-5xl font-medium text-transparent lg:text-8xl`}
         >
           Codebooks
         </h1>

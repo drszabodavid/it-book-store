@@ -3,5 +3,3 @@ export const sandyBrown = "#FCAA67";
 export const mediumCarmine = "#B0413E";
 export const steelTeal = "#548687";
 export const cream = "#FFFFC7";
-export const gradientColorStyle =
-  "bg-gradient-to-br from-leanderWeb to-sandyBrown bg-clip-text text-transparent";
