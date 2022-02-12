@@ -6,7 +6,6 @@ import {
   CheckoutPage,
   ErrorPage,
   MainPage,
-  SearchResults,
   WishList,
 } from "./Pages";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
@@ -20,7 +19,6 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="search" element={<SearchResults />} />
         <Route path="search/:bookId" element={<BookDetails />} />
         <Route path="wishlist" element={<WishList />} />
         <Route path="wishlist/:bookId" element={<BookDetails />} />

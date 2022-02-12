@@ -4,10 +4,8 @@ import useFetch from "../../../api/useFetch";
 import { displayError } from "../../../utils/notifications";
 import { searchUrl, minSearchCharacters } from "../../../constants/api";
 import { categories } from "../../../constants/categories";
-import { useNavigate } from "react-router-dom";
 
-const SearchComponent = ({ currentQuickSearchValue = "" }) => {
-  const navigate = useNavigate();
+const SearchComponent = ({ setSearchData }) => {
   const [url, setUrl] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [quickSearch, setQuickSearch] = useState("");
@@ -16,13 +14,9 @@ const SearchComponent = ({ currentQuickSearchValue = "" }) => {
   useEffect(() => {
     if (!isLoading && !error && data) {
       const { books } = { ...data };
-      navigate("/search", { state: { books, quickSearch, searchValue } });
+      setSearchData(books);
     }
   }, [isLoading, error, data]);
-
-  useEffect(() => {
-    if (currentQuickSearchValue) setQuickSearch(currentQuickSearchValue);
-  }, [currentQuickSearchValue]);
 
   const validateSearch = (searchValue) => {
     return !!searchValue && searchValue.length >= 3;
@@ -31,7 +25,7 @@ const SearchComponent = ({ currentQuickSearchValue = "" }) => {
   const handleSearch = (e) => {
     e.preventDefault();
     if (validateSearch(searchValue)) {
-      setUrl(`${searchUrl} + ${searchValue}`);
+      setUrl(`${searchUrl}/${searchValue}`);
     } else {
       displayError(
         `You need to type in minimum ${minSearchCharacters} characters`
@@ -41,7 +35,7 @@ const SearchComponent = ({ currentQuickSearchValue = "" }) => {
 
   const handleQuickSearch = (category) => {
     setQuickSearch(category);
-    setUrl(`${searchUrl} + ${category}`);
+    setUrl(`${searchUrl}/${category}`);
   };
 
   const handleValueChange = (e) => {
@@ -52,7 +46,7 @@ const SearchComponent = ({ currentQuickSearchValue = "" }) => {
 
   return (
     <>
-      <div className="flex w-full flex-wrap items-center gap-x-4 self-center pt-4 md:w-2/3 md:flex-row">
+      <div className="flex flex-wrap items-center self-center w-full pt-4 gap-x-4 md:w-2/3 md:flex-row">
         quick search
         {categories.map((category) => {
           return (
@@ -68,7 +62,7 @@ const SearchComponent = ({ currentQuickSearchValue = "" }) => {
           );
         })}
       </div>
-      <div className="flex w-full flex-col place-content-center">
+      <div className="flex flex-col w-full place-content-center">
         <SearchField
           value={searchValue}
           placeholder="Enter a title"

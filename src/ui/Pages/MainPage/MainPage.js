@@ -1,32 +1,17 @@
-import React, { useState, useEffect } from "react";
-import useFetch from "../../../api/useFetch";
-import { ErrorHandlingComponent } from "../../Components/APIComponents";
-import {
-  FeaturedCarousel,
-  DividerText,
-  SearchComponent,
-} from "../../Components";
-import { featuredUrl } from "../../../constants/api";
+import React, { useState } from "react";
+import { SearchComponent } from "../../Components";
+import FeaturedPage from "../FeaturedPage/FeaturedPage";
+import ResultsPage from "../ResultsPage/ResultsPage";
 
 const MainPage = () => {
-  const { data, isLoading, error } = useFetch(featuredUrl);
-  const [bookData, setBookData] = useState([]);
-
-  useEffect(() => {
-    if (!isLoading && data) {
-      const { books } = data;
-      setBookData(books);
-    }
-  }, [isLoading, data]);
+  const [searchData, setSearchData] = useState(null);
 
   return (
-    <div className="bg-leanderWeb h-full/header flex w-full flex-col">
-      <SearchComponent />
-      <DividerText />
-      <div className="flex h-min flex-col items-center">
-        <ErrorHandlingComponent isLoading={isLoading} error={error} />
-        {!isLoading && <FeaturedCarousel books={bookData} />}
-      </div>
+    <div className="flex flex-col w-full bg-leanderWeb h-full/header">
+      <SearchComponent setSearchData={setSearchData} />
+
+      {!searchData && <FeaturedPage />}
+      {searchData && <ResultsPage searchData={searchData} />}
     </div>
   );
 };
