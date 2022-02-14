@@ -5,18 +5,25 @@ import { displayError } from "../../../utils/notifications";
 import { searchUrl, minSearchCharacters } from "../../../constants/api";
 import { categories } from "../../../constants/categories";
 
-const SearchComponent = ({ setSearchData }) => {
+const SearchComponent = ({ setSearchData, setSearchLoading, refresh }) => {
   const [url, setUrl] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [quickSearch, setQuickSearch] = useState("");
   const { data, isLoading, error } = useFetch(url);
 
   useEffect(() => {
+    if (isLoading) setSearchLoading(true);
     if (!isLoading && !error && data) {
       const { books } = { ...data };
       setSearchData(books);
+      setSearchLoading(false);
     }
   }, [isLoading, error, data]);
+
+  useEffect(() => {
+    setSearchValue("");
+    setQuickSearch("");
+  }, [refresh]);
 
   const validateSearch = (searchValue) => {
     return !!searchValue && searchValue.length >= 3;
@@ -35,6 +42,7 @@ const SearchComponent = ({ setSearchData }) => {
 
   const handleQuickSearch = (category) => {
     setQuickSearch(category);
+    setSearchValue("");
     setUrl(`${searchUrl}/${category}`);
   };
 
@@ -47,7 +55,7 @@ const SearchComponent = ({ setSearchData }) => {
   return (
     <>
       <div className="flex flex-wrap items-center self-center w-full pt-4 gap-x-4 md:w-2/3 md:flex-row">
-        quick search
+        Quick search:
         {categories.map((category) => {
           return (
             <div
