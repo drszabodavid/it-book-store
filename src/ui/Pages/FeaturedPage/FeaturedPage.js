@@ -10,7 +10,6 @@ const FeaturedPage = () => {
     error: featuredDataError,
   } = useFetchFeaturedBooks();
 
-  console.log()
   return (
     <>
       <DividerText />

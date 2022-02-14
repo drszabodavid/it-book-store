@@ -8,7 +8,6 @@ const useFetchFeaturedBooks = () => {
 
   useEffect(() => {
     if (!isLoading && data) {
-      console.log(data);
       const { books } = data;
       setBookData(books);
     }
