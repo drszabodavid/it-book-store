@@ -13,7 +13,6 @@ const BookCard = ({ book, isFeatured }) => {
       >
         <div className="w-56 m-auto overflow-hidden h-52">
           <img
-            loading
             className="object-cover w-full h-full mt-2 transition duration-300 ease-in-out hover:scale-150"
             src={imageLoaded ? image : placeholderImage}
             alt="book-cover"
