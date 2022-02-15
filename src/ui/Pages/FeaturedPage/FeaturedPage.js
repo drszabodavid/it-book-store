@@ -18,7 +18,7 @@ const FeaturedPage = () => {
           isLoading={IsFeaturedDataLoading}
           error={featuredDataError}
         />
-        {!IsFeaturedDataLoading && (
+        {!IsFeaturedDataLoading && featuredBookData && (
           <FeaturedCarousel books={featuredBookData} />
         )}
       </div>

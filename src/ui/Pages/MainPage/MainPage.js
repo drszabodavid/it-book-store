@@ -7,6 +7,7 @@ import ResultsPage from "../ResultsPage/ResultsPage";
 
 // add single book page
 // add proptypes
+// add page if no results
 
 const MainPage = () => {
   const location = useLocation();
@@ -21,12 +22,9 @@ const MainPage = () => {
   } = usePagination();
 
   useEffect(() => {
-    const { shouldRefresh } = { ...location?.state };
-    if (shouldRefresh) {
-      setSearchData(null);
-      setRefresh((value) => !value);
-    }
-  }, [location]);
+    setSearchData(null);
+    setRefresh((value) => !value);
+  }, [location.key]);
 
   return (
     <div className="flex flex-col w-full bg-leanderWeb h-full/header">

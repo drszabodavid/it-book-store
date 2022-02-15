@@ -9,7 +9,6 @@ const UserHeader = () => {
   return (
     <Link
       to="/"
-      state={{ shouldRefresh: true }}
       className="sticky top-0 flex items-center content-center justify-between w-full p-0 from-sandyBrown to-mediumCarmine h-28 bg-gradient-to-r lg:p-8"
     >
       <div className="flex flex-row justify-between invisible lg:visible lg:w-1/5">

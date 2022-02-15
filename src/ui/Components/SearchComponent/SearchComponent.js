@@ -28,7 +28,7 @@ const SearchComponent = ({
 
   useEffect(() => {
     const value = !!searchValue ? searchValue : quickSearch;
-    setUrl(`${searchUrl}/${value}/${currentPage}`);
+    if (value) setUrl(`${searchUrl}/${value}/${currentPage}`);
   }, [currentPage]);
 
   useEffect(() => {
@@ -72,6 +72,7 @@ const SearchComponent = ({
         {categories.map((category) => {
           return (
             <CategoryBox
+              key={category}
               category={category}
               handleQuickSearch={handleQuickSearch}
               quickSearch={quickSearch}
