@@ -12,20 +12,20 @@ const SearchField = ({
   return (
     <form
       onSubmit={handleSubmit}
-      className="relative mt-6 mb-2 flex w-1/2 items-center self-center rounded-xl"
+      className="relative flex items-center self-center w-1/2 mt-6 mb-2 rounded-xl"
     >
       <input
         onChange={handleValueChange}
         type="text"
         value={value}
         placeholder={placeholder}
-        className="bg-sandyBrown/30 hover:bg-sandyBrown/50 focus:bg-sandyBrown/50 h-12 w-full rounded-xl p-3 placeholder-gray-500 placeholder-opacity-50 outline-none"
+        className="w-full h-12 p-3 placeholder-gray-500 placeholder-opacity-50 outline-none bg-sandyBrown/30 hover:bg-sandyBrown/50 focus:bg-sandyBrown/50 rounded-xl"
         maxLength="50"
       />
 
       <div
         onClick={handleSearchClick}
-        className="absolute right-0 mr-0 flex h-12 w-16 items-center justify-center rounded-r-xl bg-gray-300"
+        className="absolute right-0 flex items-center justify-center w-16 h-12 mr-0 bg-sandyBrown/50 rounded-r-xl"
       >
         <SearchIcon
           size="h-8 w-8"
