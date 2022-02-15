@@ -5,3 +5,4 @@ export { default as BookCard } from "./BookCard/BookCard";
 export { default as FeaturedCarousel } from "./FeaturedCarousel/FeaturedCarousel";
 export { default as Carousel } from "./Carousel/Carousel";
 export { default as DividerText } from "./DividerText/DividerText";
+export { default as CategoryBox } from "./CategoryBox/CategoryBox";

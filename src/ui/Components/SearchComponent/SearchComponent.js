@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { SearchField } from "..";
+import { CategoryBox, SearchField } from "..";
 import useFetch from "../../../api/useFetch";
 import { displayError } from "../../../utils/notifications";
 import { searchUrl, minSearchCharacters } from "../../../constants/api";
 import { categories } from "../../../constants/categories";
 
-const SearchComponent = ({ setSearchData, setSearchLoading, refresh }) => {
+const SearchComponent = ({
+  setSearchData,
+  setSearchLoading,
+  refresh,
+  currentPage,
+  resetPage,
+}) => {
   const [url, setUrl] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [quickSearch, setQuickSearch] = useState("");
@@ -21,6 +27,11 @@ const SearchComponent = ({ setSearchData, setSearchLoading, refresh }) => {
   }, [isLoading, error, data]);
 
   useEffect(() => {
+    const value = !!searchValue ? searchValue : quickSearch;
+    setUrl(`${searchUrl}/${value}/${currentPage}`);
+  }, [currentPage]);
+
+  useEffect(() => {
     setSearchValue("");
     setQuickSearch("");
   }, [refresh]);
@@ -32,7 +43,8 @@ const SearchComponent = ({ setSearchData, setSearchLoading, refresh }) => {
   const handleSearch = (e) => {
     e.preventDefault();
     if (validateSearch(searchValue)) {
-      setUrl(`${searchUrl}/${searchValue}`);
+      resetPage();
+      setUrl(`${searchUrl}/${searchValue}/${currentPage}`);
     } else {
       displayError(
         `You need to type in minimum ${minSearchCharacters} characters`
@@ -43,7 +55,8 @@ const SearchComponent = ({ setSearchData, setSearchLoading, refresh }) => {
   const handleQuickSearch = (category) => {
     setQuickSearch(category);
     setSearchValue("");
-    setUrl(`${searchUrl}/${category}`);
+    resetPage();
+    setUrl(`${searchUrl}/${category}/${currentPage}`);
   };
 
   const handleValueChange = (e) => {
@@ -58,15 +71,11 @@ const SearchComponent = ({ setSearchData, setSearchLoading, refresh }) => {
         Quick search:
         {categories.map((category) => {
           return (
-            <div
-              key={category}
-              onClick={() => handleQuickSearch(category)}
-              className={`text-sx mb-2 flex h-10 w-24 cursor-pointer items-center justify-center rounded-lg border-gray-500 bg-white shadow-sm md:mb-0 ${
-                quickSearch === category && "bg-sandyBrown"
-              }`}
-            >
-              {category}
-            </div>
+            <CategoryBox
+              category={category}
+              handleQuickSearch={handleQuickSearch}
+              quickSearch={quickSearch}
+            />
           );
         })}
       </div>
