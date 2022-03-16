@@ -27,7 +27,7 @@ const MainPage = () => {
   }, [location.key]);
 
   return (
-    <div className="flex flex-col w-full bg-leanderWeb h-full/header">
+    <div className="flex flex-col w-full bg-leanderWeb xl:h-full/header">
       <SearchComponent
         setSearchData={setSearchData}
         setSearchLoading={setIsSearchLoading}

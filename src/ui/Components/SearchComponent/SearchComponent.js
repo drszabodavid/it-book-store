@@ -67,8 +67,7 @@ const SearchComponent = ({
 
   return (
     <>
-      <div className="flex flex-wrap items-center self-center w-full pt-4 gap-x-4 md:w-2/3 md:flex-row">
-        Quick search:
+      <div className="flex-wrap items-center self-center justify-between hidden w-full pt-4 gap-x-4 md:flex md:w-2/3 md:flex-row lg:visible">
         {categories.map((category) => {
           return (
             <CategoryBox

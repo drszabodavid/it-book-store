@@ -12,7 +12,7 @@ const SearchField = ({
   return (
     <form
       onSubmit={handleSubmit}
-      className="relative flex items-center self-center w-1/2 mt-6 mb-2 rounded-xl"
+      className="relative flex items-center self-center w-3/4 mt-6 mb-2 rounded-xl sm:w-1/2"
     >
       <input
         onChange={handleValueChange}

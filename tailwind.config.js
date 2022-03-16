@@ -27,6 +27,9 @@ module.exports = {
       height: {
         "full/header": "calc(100vh - 112px)",
       },
+      width: {
+        "1/13": "8%",
+      },
     },
   },
   plugins: [require("@tailwindcss/line-clamp")],
