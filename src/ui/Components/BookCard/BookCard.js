@@ -1,14 +1,15 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { placeholderImage } from "../../../constants/images";
 
 const BookCard = ({ book, isFeatured }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
-  const { title, subtitle, image, url, price } = { ...book };
+  const { title, subtitle, image, price, isbn13 } = { ...book };
 
   return (
     <div className="flex p-4 min-w-64 max-w-64">
-      <a
-        href={url}
+      <Link
+        to={`/books/${isbn13}`}
         className="block bg-white rounded-lg shadow-lg hover:shadow-sandyBrown"
       >
         <div className="w-56 m-auto overflow-hidden h-52">
@@ -37,7 +38,7 @@ const BookCard = ({ book, isFeatured }) => {
             <span className="text-xl font-bold">{price}</span>
           </div>
         </div>
-      </a>
+      </Link>
     </div>
   );
 };
