@@ -5,11 +5,12 @@ import { placeholderImage } from "../../../constants/images";
 const BookCard = ({ book, isFeatured }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const { title, subtitle, image, price, isbn13 } = { ...book };
+  const toLink = isFeatured ? `/featured/${isbn13}` : `/books/${isbn13}`;
 
   return (
     <div className="flex p-4 min-w-64 max-w-64">
       <Link
-        to={`/books/${isbn13}`}
+        to={toLink}
         className="block bg-white rounded-lg shadow-lg hover:shadow-sandyBrown"
       >
         <div className="w-56 m-auto overflow-hidden h-52">

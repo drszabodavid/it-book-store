@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import useFetch from "../../../api/useFetch";
 import { bookDetailsUrl } from "../../../constants/api";
 import { Context } from "../../App";
@@ -8,6 +8,8 @@ import { ErrorHandlingComponent } from "../../Components/APIComponents";
 const BookDetails = () => {
   const { setBackButtonClicked } = useContext(Context);
   const { bookId } = useParams();
+  const location = useLocation();
+  console.log(location.pathname);
   const url = `${bookDetailsUrl}/${bookId}`;
   const { data, isLoading, error } = useFetch(url);
   const { title, subtitle, desc: description } = { ...data };
@@ -20,6 +22,8 @@ const BookDetails = () => {
     "Pages",
   ];
 
+  const isSearchBook = !location.pathname.includes("featured");
+
   return (
     <div className="flex flex-col w-full bg-leanderWeb h-full/header">
       {(isLoading || error) && (
@@ -31,7 +35,7 @@ const BookDetails = () => {
         <>
           <Link to="/">
             <button
-              onClick={() => setBackButtonClicked(true)}
+              onClick={() => setBackButtonClicked(isSearchBook)}
               className="absolute left-0 invisible w-16 h-10 m-4 border-2 text-sandyBrown hover:bg-sandyBrown/50 border-sandyBrown bg-sandyBrown/10 rounded-2xl hover:text-white md:visible"
             >
               back

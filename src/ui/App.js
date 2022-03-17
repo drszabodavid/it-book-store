@@ -20,7 +20,6 @@ const App = () => {
   return (
     <BrowserRouter>
       <ToastContainer />
-      <UserHeader />
       <Context.Provider
         value={{
           page,
@@ -31,9 +30,11 @@ const App = () => {
           setBackButtonClicked,
         }}
       >
+        <UserHeader />
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="books/:bookId" element={<BookDetails />} />
+          <Route path="featured/:bookId" element={<BookDetails />} />
           <Route path="wishlist" element={<WishList />} />
           <Route path="wishlist/:bookId" element={<BookDetails />} />
           <Route path="checkout" element={<CheckoutPage />} />

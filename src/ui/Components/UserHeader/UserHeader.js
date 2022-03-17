@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { sandyBrown, mediumCarmine } from "../../../constants/colors";
 import { JavaIcon, JavascriptIcon, PythonIcon } from "../Icons";
 import { Link } from "react-router-dom";
+import { Context } from "../../App";
 
 const UserHeader = () => {
   const logoSize = "h-12 w-12";
+  const { setSearchTerm } = useContext(Context);
 
   return (
     <Link
       to="/"
+      onClick={() => {
+        setSearchTerm("");
+      }}
       className="sticky top-0 flex items-center content-center justify-between w-full p-0 from-sandyBrown to-mediumCarmine h-28 bg-gradient-to-r lg:p-8"
     >
       <div className="flex-row justify-between hidden lg:w-1/5 xl:flex">
