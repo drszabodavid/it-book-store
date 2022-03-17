@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useParams } from "react-router-dom";
 import useFetch from "../../../api/useFetch";
 import { bookDetailsUrl } from "../../../constants/api";
+import { Context } from "../../App";
 import { ErrorHandlingComponent } from "../../Components/APIComponents";
 
 const BookDetails = () => {
+  const { setBackButtonClicked } = useContext(Context);
   const { bookId } = useParams();
   const url = `${bookDetailsUrl}/${bookId}`;
   const { data, isLoading, error } = useFetch(url);
-  const { title, subtitle, desc: description, pdf } = { ...data };
+  const { title, subtitle, desc: description } = { ...data };
   const rowLabels = [
     "Price",
     "Rating",
@@ -28,7 +30,10 @@ const BookDetails = () => {
       {!isLoading && data && (
         <>
           <Link to="/">
-            <button className="absolute left-0 invisible w-16 h-10 m-4 border-2 text-sandyBrown hover:bg-sandyBrown/50 border-sandyBrown bg-sandyBrown/10 rounded-2xl hover:text-white md:visible">
+            <button
+              onClick={() => setBackButtonClicked(true)}
+              className="absolute left-0 invisible w-16 h-10 m-4 border-2 text-sandyBrown hover:bg-sandyBrown/50 border-sandyBrown bg-sandyBrown/10 rounded-2xl hover:text-white md:visible"
+            >
               back
             </button>
           </Link>
@@ -42,18 +47,15 @@ const BookDetails = () => {
           )}
 
           <div className="flex flex-col items-center mt-4 gap-x-12 sm:mt-8 sm:justify-center md:flex-row">
-            <div className="flex flex-col h-fit w-72">
+            <div className="flex flex-col mb-4 h-fit w-72 md:mb-0 md:self-start">
+              <button className="flex items-center justify-center h-10 mb-4 bg-sandyBrown w-72 rounded-xl">
+                Add to cart
+              </button>
               <img
                 className="object-cover w-full h-full bg-steelTeal/10"
                 src={data.image}
                 alt="book-cover"
               />
-              <button className="flex items-center justify-center h-10 my-4 bg-sandyBrown w-72 rounded-xl">
-                Add to cart
-              </button>
-              <button className="flex items-center justify-center h-10 mb-4 bg-steelTeal/70 w-72 rounded-xl">
-                Preview
-              </button>
             </div>
 
             <div className="flex flex-col w-3/4 h-full md:w-1/3">
@@ -79,7 +81,7 @@ const BookDetails = () => {
                   })}
                 </tbody>
               </table>
-              <p className="text-justify">{description}</p>
+              <p className="mt-4 text-justify">{description}</p>
 
               <div className="flex justify-center w-full">
                 <Link to="/">

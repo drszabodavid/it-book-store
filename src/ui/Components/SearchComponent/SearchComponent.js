@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { CategoryBox, SearchField } from "..";
 import useFetch from "../../../api/useFetch";
 import { displayError } from "../../../utils/notifications";
 import { searchUrl, minSearchCharacters } from "../../../constants/api";
 import { categories } from "../../../constants/categories";
+import { Context } from "../../App";
 
 const SearchComponent = ({
   setSearchData,
@@ -11,7 +12,15 @@ const SearchComponent = ({
   refresh,
   currentPage,
   resetPage,
+  setPage,
 }) => {
+  const {
+    page,
+    searchTerm,
+    setSearchTerm,
+    backButtonClicked,
+    setBackButtonClicked,
+  } = useContext(Context);
   const [url, setUrl] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [quickSearch, setQuickSearch] = useState("");
@@ -23,8 +32,18 @@ const SearchComponent = ({
       const { books } = { ...data };
       setSearchData(books);
       setSearchLoading(false);
+      setBackButtonClicked(false);
     }
   }, [isLoading, error, data]);
+
+  useEffect(() => {
+    if (page && searchTerm) {
+      setPage(page);
+      setSearchValue(searchTerm);
+      setQuickSearch(searchTerm);
+      setUrl(`${searchUrl}/${searchTerm}/${page}`);
+    }
+  }, [page, searchTerm, backButtonClicked]);
 
   useEffect(() => {
     const value = !!searchValue ? searchValue : quickSearch;
@@ -43,6 +62,7 @@ const SearchComponent = ({
   const handleSearch = (e) => {
     e.preventDefault();
     if (validateSearch(searchValue)) {
+      setSearchTerm(searchValue);
       resetPage();
       setUrl(`${searchUrl}/${searchValue}/${currentPage}`);
     } else {
@@ -54,6 +74,7 @@ const SearchComponent = ({
 
   const handleQuickSearch = (category) => {
     setQuickSearch(category);
+    setSearchTerm(category);
     setSearchValue("");
     resetPage();
     setUrl(`${searchUrl}/${category}/${currentPage}`);

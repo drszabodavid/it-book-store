@@ -5,7 +5,6 @@ import { SearchComponent } from "../../Components";
 import FeaturedPage from "../FeaturedPage/FeaturedPage";
 import ResultsPage from "../ResultsPage/ResultsPage";
 
-// add single book page
 // add proptypes
 // add page if no results
 
@@ -19,6 +18,7 @@ const MainPage = () => {
     handleNextPage,
     handlePreviousPage,
     resetPage,
+    setPage,
   } = usePagination();
 
   useEffect(() => {
@@ -27,13 +27,14 @@ const MainPage = () => {
   }, [location.key]);
 
   return (
-    <div className="flex flex-col w-full bg-leanderWeb xl:h-full/header">
+    <div className="flex flex-col w-full bg-leanderWeb h-full/header">
       <SearchComponent
         setSearchData={setSearchData}
         setSearchLoading={setIsSearchLoading}
         refresh={refresh}
         currentPage={currentPage}
         resetPage={resetPage}
+        setPage={setPage}
       />
 
       {!searchData && <FeaturedPage />}
