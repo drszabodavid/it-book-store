@@ -28,20 +28,20 @@ const BookDetails = () => {
       {!isLoading && data && (
         <>
           <Link to="/">
-            <button className="absolute left-0 w-16 h-10 m-4 border-2 text-sandyBrown hover:bg-sandyBrown/50 border-sandyBrown bg-sandyBrown/10 rounded-2xl hover:text-white">
+            <button className="absolute left-0 invisible w-16 h-10 m-4 border-2 text-sandyBrown hover:bg-sandyBrown/50 border-sandyBrown bg-sandyBrown/10 rounded-2xl hover:text-white md:visible">
               back
             </button>
           </Link>
-          <h1 className="self-center mt-8 text-4xl text-justify text-sandyBrown">
+          <h1 className="self-center px-12 mt-6 text-3xl text-sandyBrown font-bolt sm:mt-8 sm:p-0 sm:text-4xl sm:font-normal">
             {title}
           </h1>
           {subtitle && (
-            <h3 className="self-center mt-6 text-2xl text-mediumCarmine">
+            <h3 className="self-center px-12 my-4 text-2xl text-justify text-mediumCarmine sm:mt-6 sm:p-0">
               {subtitle}
             </h3>
           )}
 
-          <div className="flex flex-row justify-center mt-8 gap-x-12">
+          <div className="flex flex-col items-center mt-4 gap-x-12 sm:mt-8 sm:justify-center md:flex-row">
             <div className="flex flex-col h-fit w-72">
               <img
                 className="object-cover w-full h-full bg-steelTeal/10"
@@ -51,12 +51,12 @@ const BookDetails = () => {
               <button className="flex items-center justify-center h-10 my-4 bg-sandyBrown w-72 rounded-xl">
                 Add to cart
               </button>
-              <button className="flex items-center justify-center h-10 bg-steelTeal/70 w-72 rounded-xl">
+              <button className="flex items-center justify-center h-10 mb-4 bg-steelTeal/70 w-72 rounded-xl">
                 Preview
               </button>
             </div>
 
-            <div className="flex flex-col w-1/3 h-full">
+            <div className="flex flex-col w-3/4 h-full md:w-1/3">
               <table>
                 <tbody>
                   {rowLabels.map((label, index) => {
@@ -79,7 +79,15 @@ const BookDetails = () => {
                   })}
                 </tbody>
               </table>
-              <p className="mt-4 text-justify">{description}</p>
+              <p className="text-justify">{description}</p>
+
+              <div className="flex justify-center w-full">
+                <Link to="/">
+                  <button className="flex items-center justify-center visible h-10 my-4 mb-4 bg-steelTeal/50 w-72 rounded-xl sm:invisible">
+                    Back
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         </>
