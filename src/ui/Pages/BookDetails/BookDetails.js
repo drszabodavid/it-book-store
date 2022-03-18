@@ -9,7 +9,6 @@ const BookDetails = () => {
   const { setBackButtonClicked } = useContext(Context);
   const { bookId } = useParams();
   const location = useLocation();
-  console.log(location.pathname);
   const url = `${bookDetailsUrl}/${bookId}`;
   const { data, isLoading, error } = useFetch(url);
   const { title, subtitle, desc: description } = { ...data };
@@ -25,44 +24,44 @@ const BookDetails = () => {
   const isSearchBook = !location.pathname.includes("featured");
 
   return (
-    <div className="flex flex-col w-full bg-leanderWeb h-full/header">
+    <div className="bg-leanderWeb h-full/header flex w-full flex-col">
       {(isLoading || error) && (
-        <div className="flex items-center justify-center h-full">
+        <div className="flex h-full items-center justify-center">
           <ErrorHandlingComponent isLoading={isLoading} error={error} />
         </div>
       )}
       {!isLoading && data && (
         <>
-          <Link to="/">
+          <Link to="/it-book-store">
             <button
               onClick={() => setBackButtonClicked(isSearchBook)}
-              className="absolute left-0 invisible w-16 h-10 m-4 border-2 text-sandyBrown hover:bg-sandyBrown/50 border-sandyBrown bg-sandyBrown/10 rounded-2xl hover:text-white md:visible"
+              className="text-sandyBrown hover:bg-sandyBrown/50 border-sandyBrown bg-sandyBrown/10 invisible absolute left-0 m-4 h-10 w-16 rounded-2xl border-2 hover:text-white md:visible"
             >
               back
             </button>
           </Link>
-          <h1 className="self-center px-12 mt-6 text-3xl text-sandyBrown font-bolt sm:mt-8 sm:p-0 sm:text-4xl sm:font-normal">
+          <h1 className="text-sandyBrown font-bolt mt-6 self-center px-12 text-3xl sm:mt-8 sm:p-0 sm:text-4xl sm:font-normal">
             {title}
           </h1>
           {subtitle && (
-            <h3 className="self-center px-12 my-4 text-2xl text-justify text-mediumCarmine sm:mt-6 sm:p-0">
+            <h3 className="text-mediumCarmine my-4 self-center px-12 text-justify text-2xl sm:mt-6 sm:p-0">
               {subtitle}
             </h3>
           )}
 
-          <div className="flex flex-col items-center mt-4 gap-x-12 sm:mt-8 sm:justify-center md:flex-row">
-            <div className="flex flex-col mb-4 h-fit w-72 md:mb-0 md:self-start">
-              <button className="flex items-center justify-center h-10 mb-4 bg-sandyBrown w-72 rounded-xl">
+          <div className="mt-4 flex flex-col items-center gap-x-12 sm:mt-8 sm:justify-center md:flex-row">
+            <div className="mb-4 flex h-fit w-72 flex-col md:mb-0 md:self-start">
+              <button className="bg-sandyBrown mb-4 flex h-10 w-72 items-center justify-center rounded-xl">
                 Add to cart
               </button>
               <img
-                className="object-cover w-full h-full bg-steelTeal/10"
+                className="bg-steelTeal/10 h-full w-full object-cover"
                 src={data.image}
                 alt="book-cover"
               />
             </div>
 
-            <div className="flex flex-col w-3/4 h-full md:w-1/3">
+            <div className="flex h-full w-3/4 flex-col md:w-1/3">
               <table>
                 <tbody>
                   {rowLabels.map((label, index) => {
@@ -76,7 +75,7 @@ const BookDetails = () => {
                             : "bg-steelTeal/10"
                         } h-10`}
                       >
-                        <td className="w-1/4 px-2 font-bold border-r-2 border-white">
+                        <td className="w-1/4 border-r-2 border-white px-2 font-bold">
                           {label}
                         </td>
                         <td className="p-2">{data[value]}</td>
@@ -87,9 +86,9 @@ const BookDetails = () => {
               </table>
               <p className="mt-4 text-justify">{description}</p>
 
-              <div className="flex justify-center w-full">
-                <Link to="/">
-                  <button className="flex items-center justify-center visible h-10 my-4 mb-4 bg-steelTeal/50 w-72 rounded-xl sm:invisible">
+              <div className="flex w-full justify-center">
+                <Link to="/it-book-store">
+                  <button className="bg-steelTeal/50 visible my-4 mb-4 flex h-10 w-72 items-center justify-center rounded-xl sm:invisible">
                     Back
                   </button>
                 </Link>

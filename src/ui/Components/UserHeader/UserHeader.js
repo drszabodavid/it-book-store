@@ -10,19 +10,17 @@ const UserHeader = () => {
 
   return (
     <Link
-      to="/"
-      onClick={() => {
-        setSearchTerm("");
-      }}
-      className="sticky top-0 flex items-center content-center justify-between w-full p-0 from-sandyBrown to-mediumCarmine h-28 bg-gradient-to-r lg:p-8"
+      to="/it-book-store"
+      onClick={() => setSearchTerm("")}
+      className="from-sandyBrown to-mediumCarmine sticky top-0 flex h-28 w-full content-center items-center justify-between bg-gradient-to-r p-0 lg:p-8"
     >
-      <div className="flex-row justify-between hidden lg:w-1/5 xl:flex">
+      <div className="hidden flex-row justify-between lg:w-1/5 xl:flex">
         <JavaIcon fill={mediumCarmine} size={logoSize} />
         <JavascriptIcon fill={mediumCarmine} size={logoSize} />
         <PythonIcon fill={mediumCarmine} size={logoSize} />
       </div>
 
-      <div className="flex flex-row justify-center w-full">
+      <div className="flex w-full flex-row justify-center">
         <h1
           className={`font-link from-leanderWeb to-sandyBrown pointer-events-none bg-gradient-to-br bg-clip-text text-4xl font-medium text-transparent sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl`}
         >
@@ -30,7 +28,7 @@ const UserHeader = () => {
         </h1>
       </div>
 
-      <div className="flex-row justify-between hidden lg:w-1/5 xl:flex">
+      <div className="hidden flex-row justify-between lg:w-1/5 xl:flex">
         <PythonIcon fill={sandyBrown} size={logoSize} />
         <JavascriptIcon fill={sandyBrown} size={logoSize} />
         <JavaIcon fill={sandyBrown} size={logoSize} />

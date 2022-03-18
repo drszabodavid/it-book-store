@@ -3,16 +3,16 @@ import React from "react";
 const DividerText = ({ isSearch }) => {
   return (
     <div className="flex flex-row place-content-center">
-      <div className="relative invisible sm:visible sm:w-2/4">
-        <div className="absolute w-full h-1 bg-sandyBrown/50 top-2/3 left-6" />
-        <div className="absolute w-full h-1 bg-sandyBrown/50 top-1/2 left-6" />
+      <div className="invisible relative sm:visible sm:w-2/4">
+        <div className="bg-sandyBrown/50 absolute top-2/3 left-6 h-1 w-full" />
+        <div className="bg-sandyBrown/50 absolute top-1/2 left-6 h-1 w-full" />
       </div>
-      <h3 className="my-2 text-2xl font-bold tracking-widest text-center uppercase pointer-events-none text-sandyBrown/80 sm:text-3xl">
+      <h3 className="text-sandyBrown/80 pointer-events-none my-2 text-center text-2xl font-bold uppercase tracking-widest sm:text-3xl">
         {isSearch ? "Search Results" : "Featured Books"}
       </h3>
-      <div className="relative invisible sm:visible sm:w-2/4">
-        <div className="absolute w-full h-1 bg-sandyBrown/50 top-2/3 right-6"></div>
-        <div className="absolute w-full h-1 bg-sandyBrown/50 top-1/2 right-6"></div>
+      <div className="invisible relative sm:visible sm:w-2/4">
+        <div className="bg-sandyBrown/50 absolute top-2/3 right-6 h-1 w-full"></div>
+        <div className="bg-sandyBrown/50 absolute top-1/2 right-6 h-1 w-full"></div>
       </div>
     </div>
   );
