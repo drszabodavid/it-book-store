@@ -3,6 +3,7 @@ import { sandyBrown, mediumCarmine } from "../../../constants/colors";
 import { JavaIcon, JavascriptIcon, PythonIcon } from "../Icons";
 import { Link } from "react-router-dom";
 import { Context } from "../../App";
+import { basePath } from "../../../constants/api";
 
 const UserHeader = () => {
   const logoSize = "h-12 w-12";
@@ -10,17 +11,17 @@ const UserHeader = () => {
 
   return (
     <Link
-      to="/it-book-store"
+      to={basePath}
       onClick={() => setSearchTerm("")}
-      className="from-sandyBrown to-mediumCarmine sticky top-0 flex h-28 w-full content-center items-center justify-between bg-gradient-to-r p-0 lg:p-8"
+      className="sticky top-0 flex items-center content-center justify-between w-full p-0 from-sandyBrown to-mediumCarmine h-28 bg-gradient-to-r lg:p-8"
     >
-      <div className="hidden flex-row justify-between lg:w-1/5 xl:flex">
+      <div className="flex-row justify-between hidden lg:w-1/5 xl:flex">
         <JavaIcon fill={mediumCarmine} size={logoSize} />
         <JavascriptIcon fill={mediumCarmine} size={logoSize} />
         <PythonIcon fill={mediumCarmine} size={logoSize} />
       </div>
 
-      <div className="flex w-full flex-row justify-center">
+      <div className="flex flex-row justify-center w-full">
         <h1
           className={`font-link from-leanderWeb to-sandyBrown pointer-events-none bg-gradient-to-br bg-clip-text text-4xl font-medium text-transparent sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl`}
         >
@@ -28,7 +29,7 @@ const UserHeader = () => {
         </h1>
       </div>
 
-      <div className="hidden flex-row justify-between lg:w-1/5 xl:flex">
+      <div className="flex-row justify-between hidden lg:w-1/5 xl:flex">
         <PythonIcon fill={sandyBrown} size={logoSize} />
         <JavascriptIcon fill={sandyBrown} size={logoSize} />
         <JavaIcon fill={sandyBrown} size={logoSize} />
