@@ -39,17 +39,22 @@ const App = () => {
       >
         <UserHeader />
         <Routes>
-          <Route path={`${basePath}/`} element={<MainPage />} />
-          <Route path="/" element={<Navigate replace to={`${basePath}/`} />} />
-          <Route path={`${basePath}/books/:bookId`} element={<BookDetails />} />
+          <Route exact path={`${basePath}/`} element={<MainPage />} />
+          {/* <Route path="/" element={<Navigate replace to={`${basePath}/`} />} /> */}
           <Route
+            exact
+            path={`${basePath}/books/:bookId`}
+            element={<BookDetails />}
+          />
+          <Route
+            exact
             path={`${basePath}/featured/:bookId`}
             element={<BookDetails />}
           />
           {/* <Route path="wishlist" element={<WishList />} />
           <Route path="wishlist/:bookId" element={<BookDetails />} />
           <Route path="checkout" element={<CheckoutPage />} /> */}
-          {/* <Route path={`${basePath}/*`} element={<ErrorPage />} /> */}
+          <Route path={`${basePath}/*`} element={<ErrorPage />} />
         </Routes>
       </Context.Provider>
     </BrowserRouter>
