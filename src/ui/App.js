@@ -10,6 +10,7 @@ import {
 } from "./Pages";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { UserHeader } from "./Components";
+import { ShoppingCartIcon } from "./Components/Icons";
 export const Context = createContext("Default Value");
 
 const App = () => {
@@ -31,6 +32,8 @@ const App = () => {
         }}
       >
         <UserHeader />
+        <ShoppingCartIcon />
+
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="books/:bookId" element={<BookDetails />} />

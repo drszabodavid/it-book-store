@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { sandyBrown } from "../../../constants/colors";
 import { placeholderImage } from "../../../constants/images";
+import { FavouriteIcon, PlusIcon } from "../Icons";
 
 const BookCard = ({ book, isFeatured }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -35,8 +37,12 @@ const BookCard = ({ book, isFeatured }) => {
             {title}
           </h2>
           <p className="h-10 text-sm line-clamp-2 ">{subtitle}</p>
-          <div className="flex items-center mt-3">
+          <div className="flex items-center w-full mt-3">
             <span className="text-xl font-bold">{price}</span>
+            <div className="flex flex-row justify-end w-full gap-1">
+              <PlusIcon size="w-8 h-8" fill={sandyBrown} />
+              <FavouriteIcon size="w-8 h-8" fill={sandyBrown} />
+            </div>
           </div>
         </div>
       </Link>
